@@ -1,0 +1,11 @@
+variable "gitlab_setting" {}
+variable "gitlab_token" {}
+variable "project_setting" {}
+variable "gitlab_users" {}
+variable "http_proxy" {}
+variable "https_proxy" {}
+variable "no_proxy" {}
+variable "access_key" {}
+variable "secret_key" {}
+variable "ecr" {}
+variable "ecr_uri" {}

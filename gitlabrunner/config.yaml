@@ -1,0 +1,13 @@
+gitlabUrl: http://gitlab-webservice-default.gitlab.svc.cluster.local:8181/
+runnerRegistrationToken: <トークン>
+rbac:
+  create: true
+runners:
+  config: |
+    [[runners]]
+      [runners.kubernetes]
+        namespace = "{{.Release.Namespace}}"
+        image = "ubuntu:16.04"
+        [[runners.kubernetes.host_aliases]]
+          ip = "<IngressのIP>"
+          hostnames = ["gitlab-webservice-default.gitlab.svc.cluster.local"]
