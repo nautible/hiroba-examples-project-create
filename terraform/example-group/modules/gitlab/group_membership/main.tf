@@ -9,8 +9,9 @@ terraform {
 }
 
 resource "gitlab_group_membership" "group_member" {
-  count        = length(var.project_setting.users)
+  for_each = toset(var.project_setting.users)
+
   group_id     = var.group.id
-  user_id      = var.users[var.project_setting.users[count.index]]
+  user_id      = var.users[each.key]
   access_level = "developer" # guest,reporter,developer,maintainer,owner
 }
