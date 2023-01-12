@@ -32,4 +32,4 @@ release_manifests:
       git push http://group_${ci_user}_bot:$PAT@gitlab-webservice-default.gitlab.svc.cluster.local/${group}/${project} $CI_COMMIT_SHORT_SHA
       apk update
       apk add curl
-      curl -X POST --header "PRIVATE-TOKEN: ${gitlab_token}" --header "Content-Type: application/json" --data '{"source_branch": "$CI_COMMIT_SHORT_SHA", "target_branch": "main", "title": "auto merge request"}' ${gitlab_url}${gitlab_api}projects/${project_path}/merge_requests
+      curl -X POST --header "PRIVATE-TOKEN: ${gitlab_token}" --header "Content-Type: application/json" --data "{\"source_branch\": \"$CI_COMMIT_SHORT_SHA\", \"target_branch\": \"main\", \"title\": \"auto merge request\"}" ${gitlab_url}${gitlab_api}projects/${project_path}/merge_requests

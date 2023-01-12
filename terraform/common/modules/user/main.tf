@@ -9,11 +9,12 @@ terraform {
 }
 
 resource "gitlab_user" "users" {
-  count            = length(var.users)
-  name             = var.users[count.index].name
-  username         = var.users[count.index].id
+  for_each = var.users
+
+  name             = var.users[each.key].name
+  username         = each.key
   password         = var.default_password
-  email            = var.users[count.index].email
+  email            = var.users[each.key].email
   is_admin         = var.is_admin
   projects_limit   = var.projects_limit
   can_create_group = var.can_create_group
@@ -21,6 +22,6 @@ resource "gitlab_user" "users" {
   reset_password   = var.reset_password
 
   lifecycle {
-    ignore_changes = [name,email]
+    ignore_changes = [name,password,email]
   }
 }

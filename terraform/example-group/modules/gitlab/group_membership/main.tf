@@ -11,6 +11,6 @@ terraform {
 resource "gitlab_group_membership" "group_member" {
   count        = length(var.project_setting.users)
   group_id     = var.group.id
-  user_id      = "${lookup(var.users, "${var.project_setting.users[count.index]}")}"
+  user_id      = var.users[var.project_setting.users[count.index]]
   access_level = "developer" # guest,reporter,developer,maintainer,owner
 }

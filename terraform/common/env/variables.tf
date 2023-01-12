@@ -37,21 +37,18 @@ variable "gitlab_user_common" {
 
 variable "gitlab_users" {
   description = "GitLab利用ユーザー（複数設定）"
-  type = list(object({
-    id    = string
+  type = map(object({
     name  = string
     email = string # すべて小文字に置き換えられるので最初から小文字にしておくこと（大文字があると毎回差分になる）
   }))
-  default = [
-    {
-      id    = "ID000001",
+  default = {
+    "ID000001" = {
       name  = "test1"
       email = "XXXXXXX" # ユーザーのメールアドレス
     },
-    {
-      id    = "ID000002",
+    "ID000002" = {
       name  = "test2"
       email = "XXXXXXX" # ユーザーのメールアドレス
     }
-  ]
+  }
 }
